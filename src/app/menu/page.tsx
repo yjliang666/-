@@ -1,4 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
+
+function getDishImageSrc(name: string) {
+  // public/photos/菜品名.jpg → 访问路径为 /photos/菜品名.jpg
+  return `/photos/${encodeURIComponent(name)}.jpg`;
+}
 
 const coffees = [
   {
@@ -62,15 +68,26 @@ export default function MenuPage() {
                 {coffees.map((item) => (
                   <li
                     key={item.name}
-                    className="flex items-start justify-between gap-3 rounded-2xl bg-muted px-3.5 py-2.5 text-zinc-700 transition hover:-translate-y-0.5 hover:bg-zinc-100"
+                    className="flex items-center justify-between gap-3 rounded-2xl bg-muted px-3.5 py-2.5 text-zinc-700 transition hover:-translate-y-0.5 hover:bg-zinc-100"
                   >
-                    <div>
-                      <div className="text-[13px] font-medium text-zinc-900">
-                        {item.name}
+                    <div className="flex items-center gap-3">
+                      <div className="h-12 w-12 overflow-hidden rounded-xl border border-border-subtle bg-surface">
+                        <Image
+                          src={getDishImageSrc(item.name)}
+                          alt={item.name}
+                          width={96}
+                          height={96}
+                          className="h-full w-full object-cover"
+                        />
                       </div>
-                      <p className="mt-0.5 text-xs text-zinc-500">
-                        {item.description}
-                      </p>
+                      <div>
+                        <div className="text-[13px] font-medium text-zinc-900">
+                          {item.name}
+                        </div>
+                        <p className="mt-0.5 text-xs text-zinc-500">
+                          {item.description}
+                        </p>
+                      </div>
                     </div>
                     <span className="shrink-0 text-xs font-semibold text-zinc-900">
                       {item.price}
@@ -93,15 +110,26 @@ export default function MenuPage() {
                 {desserts.map((item) => (
                   <li
                     key={item.name}
-                    className="flex items-start justify-between gap-3 rounded-2xl bg-muted px-3.5 py-2.5 text-zinc-700 transition hover:-translate-y-0.5 hover:bg-zinc-100"
+                    className="flex items-center justify-between gap-3 rounded-2xl bg-muted px-3.5 py-2.5 text-zinc-700 transition hover:-translate-y-0.5 hover:bg-zinc-100"
                   >
-                    <div>
-                      <div className="text-[13px] font-medium text-zinc-900">
-                        {item.name}
+                    <div className="flex items-center gap-3">
+                      <div className="h-12 w-12 overflow-hidden rounded-xl border border-border-subtle bg-surface">
+                        <Image
+                          src={getDishImageSrc(item.name)}
+                          alt={item.name}
+                          width={96}
+                          height={96}
+                          className="h-full w-full object-cover"
+                        />
                       </div>
-                      <p className="mt-0.5 text-xs text-zinc-500">
-                        {item.description}
-                      </p>
+                      <div>
+                        <div className="text-[13px] font-medium text-zinc-900">
+                          {item.name}
+                        </div>
+                        <p className="mt-0.5 text-xs text-zinc-500">
+                          {item.description}
+                        </p>
+                      </div>
                     </div>
                     <span className="shrink-0 text-xs font-semibold text-zinc-900">
                       {item.price}
