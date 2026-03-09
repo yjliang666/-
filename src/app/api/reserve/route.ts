@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
-import { getSupabase } from "@/lib/supabase";
+import { createAdminClient } from "@/lib/supabase";
 
 export async function POST(request: Request) {
   try {
-    const supabase = getSupabase();
+    // 使用 service_role 密钥在服务端写入，绕过 RLS，前端无法拿到该密钥
+    const supabase = createAdminClient();
     const body = await request.json();
     const { date, slot, partySize, name, phone, email, notes } = body;
 
